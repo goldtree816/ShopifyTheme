@@ -1,12 +1,13 @@
 [
- {
-  "name": "theme_info",
-  "theme_name": "GoldTree Fashion",
-  "theme_version": "1.0.0",
-  "theme_author": "GoldTree Group",
-  "theme_documentation_url": "https://docs.google.com/document/d/19lY4yFX7fDHna20ULG_sbbnOzbjGvKT8qNb8itd9Xzw/edit?usp=sharing", 
-  "theme_support_url": "mailto:business@goldtree.com.np"
-},
+  {
+    "name": "theme_info",
+    "theme_name": "GoldTree Fashion",
+    "theme_version": "1.0.0",
+    "theme_author": "GoldTree Group",
+    "theme_documentation_url": "https://docs.google.com/document/d/19lY4yFX7fDHna20ULG_sbbnOzbjGvKT8qNb8itd9Xzw/edit?usp=sharing",
+    // "theme_support_url": "mailto:business@goldtree.com.np"
+    "theme_support_email": "karankumar20146@gmail.com"
+  },
   {
     "name": "t:general.typography",
     "settings": [

@@ -1,7 +1,7 @@
 {{ 'hero-banner.css' | asset_url | stylesheet_tag }}
 
 <section class="hero-banner" style="--hero-bg: {{ section.settings.bg_color }}; --hero-text: {{ section.settings.text_color }}; --hero-cta-bg: {{ section.settings.cta_bg }}; --hero-cta-text: {{ section.settings.cta_text }}; --hero-cta-bg-hover: {{ section.settings.cta_bg_hover }};">
-  <div class="hero-banner__content">
+  {% comment %} <div class="hero-banner__content">
     {% if section.settings.title != blank %}
       <h1 class="hero-banner__title">{{ section.settings.title }}</h1>
     {% else %}
@@ -17,11 +17,17 @@
     {% else %}
       <a href="/collections/all" class="hero-banner__cta">Shop Collection</a>
     {% endif %}
-  </div>
+  </div> {% endcomment %}
   
-  <div class="hero-banner__media-container">
-    <img class="hero-banner__fallback-img" src="{{ 'image.png' | asset_url }}" alt="AuraWear fallback image" loading="lazy" />
-    {% if section.settings.video != blank %}
+  {% comment %} <div class="hero-banner__media-container"> {% endcomment %}
+    {% comment %} <img class="hero-banner__fallback-img" src="{{ 'bamboo.jpg' | asset_url }}" alt="AuraWear fallback image" loading="lazy" /> {% endcomment %}
+    <img class="hero-banner__fallback-img" 
+     src="{{ 'bamboo.jpg' | asset_url }}" 
+     alt="AuraWear fallback image" 
+     width="100vw" 
+     height="1080" 
+     loading="lazy" />
+    {% comment %} {% if section.settings.video != blank %}
       <video class="hero-banner__media" preload="metadata" poster="{{ section.settings.image | image_url: width: 1200 }}">
         <source src="{{ section.settings.video }}" type="video/mp4">
       </video>
@@ -31,8 +37,9 @@
       <video class="hero-banner__media" preload="metadata">
         <source src="{{ 'hero.mp4' | asset_url }}" type="video/mp4">
       </video>
-    {% endif %}
-  </div>
+    {% endif %} {% endcomment %}
+  {% comment %} </div> {% endcomment %}
+
 </section>
 
 <script>
@@ -56,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+
 {% schema %}
 {
   "name": "Hero banner",
@@ -75,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Let Your Aura Flow Freely"
+      "default": "Bamboo Product"
     },
     {
       "type": "text",

@@ -49,11 +49,16 @@
 .collections-sidebar {
   width: 260px;
   background: linear-gradient(135deg, #f7f7fa 0%, #f0f0f5 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease-in-out infinite;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.35);
   border-radius: 1rem;
-  box-shadow: 0 4px 24px rgba(29,29,31,0.10);
+  box-shadow: 0 10px 30px rgba(29,29,31,0.12), 0 2px 10px rgba(29,29,31,0.06);
   padding: 2rem 1.5rem;
   height: fit-content;
-  border: 1px solid #ececec;
+  border: 1px solid rgba(255,255,255,0.35);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -103,7 +108,10 @@
 }
 
 .collections-product-card {
-  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  background: rgba(255,255,255,0.18);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.35);
   border-radius: 1rem;
   box-shadow: 
     0 4px 8px rgba(0,0,0,0.1),
@@ -128,7 +136,7 @@
     0 32px 64px rgba(0,0,0,0.08),
     0 0 0 1px rgba(255,255,255,0.9) inset;
   transform: translateY(-8px) translateZ(0) scale(1.02);
-  background: linear-gradient(145deg, #ffffff 0%, #f0f2f5 100%);
+  background: rgba(255,255,255,0.24);
 }
 
 .collections-product-image-link {
@@ -139,7 +147,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  background: #ffffff;
   border-radius: 0.75rem;
   box-shadow: 
     0 2px 4px rgba(0,0,0,0.1),
@@ -511,6 +519,8 @@
     gap: 1.5rem;
   }
 }
+
+@keyframes gradientShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 
 @media screen and (max-width: 768px) {
   .collections-layout {

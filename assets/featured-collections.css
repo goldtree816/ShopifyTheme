@@ -1,5 +1,8 @@
 .featured-collections {
 	padding: 40px 16px;
+	/* background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #D2691E 50%, #CD853F 75%, #DEB887 100%); */
+	margin: 0 1rem;
+	border-radius: 28px;
 }
 
 .featured-collections .fc-container {
@@ -20,12 +23,14 @@
 	font-size: 28px;
 	line-height: 1.2;
 	font-weight: 700;
+	color: #000000;
 }
 
 .featured-collections .fc-subtitle {
-	color: #555;
-	font-size: 14px;
+	color: #000000;
+	font-size: 16px;
 	line-height: 1.6;
+	font-weight: 700;
 }
 
 .featured-collections .fc-grid {
@@ -65,6 +70,9 @@
 	display: block;
 	width: 100%;
 	height: 100%;
+	background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #D2691E 50%, #CD853F 75%, #DEB887 100%);
+	background-size: 300% 300%;
+	animation: gradientShift 8s ease-in-out infinite;
 }
 
 .featured-collections .fc-card__image {
@@ -73,6 +81,9 @@
 	object-fit: contain;
 	object-position: center;
 	display: block;
+	background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #D2691E 50%, #CD853F 75%, #DEB887 100%);
+	background-size: 300% 300%;
+	animation: gradientShift 8s ease-in-out infinite;
 }
 
 .featured-collections .fc-card__overlay {
@@ -144,4 +155,6 @@
 		aspect-ratio: 1 / 1;
 	}
 }
+
+@keyframes gradientShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 

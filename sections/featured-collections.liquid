@@ -1,4 +1,4 @@
-<section class="featured-collections">
+{% comment %} <section class="featured-collections">
   <link rel="stylesheet" href="{{ 'featured-collections.css' | asset_url }}">
   <div class="featured-collections__header">
     <h2 class="featured-collections__title">{{ section.settings.heading | default: 'Featured Products' }}</h2>
@@ -55,4 +55,472 @@
     }
   ]
 }
+{% endschema %} {% endcomment %}
+
+
+
+
+
+
+
+
+
+{% comment %} <!-- sections/featured-collections.liquid -->
+<section class="featured-collections">
+  <link rel="stylesheet" href="{{ 'featured-collections.css' | asset_url }}">
+  
+  <div class="featured-collections__container">
+    <!-- Hero Section with Image and Text -->
+    <div class="featured-collections__hero">
+      <div class="featured-collections__hero-image">
+        {% if section.settings.hero_image %}
+          <img src="{{ section.settings.hero_image | img_url: '800x600' }}" 
+               alt="{{ section.settings.heading | escape }}" 
+               class="hero-image" 
+               loading="lazy" />
+        {% endif %}
+        <div class="hero-overlay"></div>
+      </div>
+      
+      <div class="featured-collections__hero-content">
+        <h2 class="featured-collections__title">{{ section.settings.heading | default: 'We are carbon fiber obsessed' }}</h2>
+        <p class="featured-collections__subtitle">{{ section.settings.subheading | default: 'We love carbon fiber for its famous tensile strength, curious light weight nature and of course aesthetic. Our racquets are made with anywhere from 3K to 18K carbon fiber, the same used by professional paddle players and utilized in aerospace and race car parts. ALL of our racquets are reinforced with carbon fiber tubing for added durability.' }}</p>
+        
+        {% if section.settings.cta_text != blank %}
+          <a href="{{ section.settings.cta_url | default: '#collections' }}" class="hero-cta">
+            {{ section.settings.cta_text }}
+            <span class="cta-icon">→</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Collections Grid -->
+    <div class="featured-collections__grid" id="collections">
+      {% if section.blocks.size > 0 %}
+        <div class="collections-grid">
+          {% for block in section.blocks %}
+            {% assign featured_collection = collections[block.settings.collection] %}
+            {% if featured_collection %}
+              <div class="collection-card" {{ block.shopify_attributes }}>
+                <div class="collection-card__image-container">
+                  {% if block.settings.collection_image %}
+                    <img src="{{ block.settings.collection_image | img_url: '500x500' }}" 
+                         alt="{{ featured_collection.title | escape }}" 
+                         class="collection-card__image" 
+                         loading="lazy" />
+                  {% elsif featured_collection.featured_image %}
+                    <img src="{{ featured_collection.featured_image | img_url: '500x500' }}" 
+                         alt="{{ featured_collection.title | escape }}" 
+                         class="collection-card__image" 
+                         loading="lazy" />
+                  {% elsif featured_collection.products.first.featured_image %}
+                    <img src="{{ featured_collection.products.first.featured_image | img_url: '500x500' }}" 
+                         alt="{{ featured_collection.title | escape }}" 
+                         class="collection-card__image" 
+                         loading="lazy" />
+                  {% endif %}
+                  
+                  {% if featured_collection.products.size > 0 %}
+                    <span class="collection-badge">{{ featured_collection.products.size }} {% if featured_collection.products.size == 1 %}Item{% else %}Items{% endif %}</span>
+                  {% endif %}
+                  
+                  <div class="collection-card__overlay">
+                    <a href="{{ featured_collection.url }}" class="collection-card__quick-view">
+                      View Collection
+                    </a>
+                  </div>
+                </div>
+                
+                <div class="collection-card__content">
+                  <h3 class="collection-card__title">{{ block.settings.custom_title | default: featured_collection.title }}</h3>
+                  {% if block.settings.description != blank %}
+                    <p class="collection-card__description">{{ block.settings.description }}</p>
+                  {% elsif featured_collection.description != blank %}
+                    <p class="collection-card__description">{{ featured_collection.description | truncate: 120 }}</p>
+                  {% endif %}
+                  <a href="{{ featured_collection.url }}" class="collection-card__cta">Shop Collection</a>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="no-collections">
+          <p>No featured collections found. Please add collection blocks in the section settings.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- CSS Styles -->
+<style>
+.featured-collections {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+  overflow: hidden;
+}
+
+.featured-collections__container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Hero Section */
+.featured-collections__hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  align-items: center;
+}
+
+.featured-collections__hero-image {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,0.3) 0%, transparent 70%);
+}
+
+.featured-collections__hero-content {
+  padding: 60px 80px;
+  z-index: 2;
+  position: relative;
+}
+
+.featured-collections__title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.featured-collections__subtitle {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(76, 175, 80, 0.4);
+}
+
+.cta-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover .cta-icon {
+  transform: translateX(4px);
+}
+
+/* Collections Section */
+.featured-collections__grid {
+  padding: 80px 40px;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.collection-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.collection-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.collection-card__image-container {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.collection-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.collection-card:hover .collection-card__image {
+  transform: scale(1.05);
+}
+
+.collection-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #4CAF50;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.collection-card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.collection-card:hover .collection-card__overlay {
+  opacity: 1;
+}
+
+.collection-card__quick-view {
+  padding: 12px 24px;
+  background: white;
+  color: #333;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.collection-card__quick-view:hover {
+  background: #4CAF50;
+  color: white;
+  transform: scale(1.05);
+}
+
+.collection-card__content {
+  padding: 24px;
+  text-align: center;
+}
+
+.collection-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.collection-card__description {
+  font-size: 0.95rem;
+  color: #cccccc;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.collection-card__cta {
+  display: inline-block;
+  padding: 12px 24px;
+  background: transparent;
+  color: white;
+  text-decoration: none;
+  border: 2px solid #4CAF50;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.collection-card__cta:hover {
+  background: #4CAF50;
+  transform: translateY(-2px);
+}
+
+.no-collections {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .featured-collections__hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  
+  .featured-collections__hero-content {
+    padding: 40px 20px;
+    order: 2;
+  }
+  
+  .featured-collections__hero-image {
+    height: 400px;
+    order: 1;
+  }
+  
+  .featured-collections__title {
+    font-size: 2.5rem;
+  }
+  
+  .featured-collections__grid {
+    padding: 40px 20px;
+  }
+  
+  .collections-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-collections__hero-content {
+    padding: 30px 20px;
+  }
+  
+  .featured-collections__title {
+    font-size: 2rem;
+  }
+  
+  .featured-collections__subtitle {
+    font-size: 1rem;
+  }
+  
+  .collections-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Featured Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "We are carbon fiber obsessed"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Section Description",
+      "default": "We love carbon fiber for its famous tensile strength, curious light weight nature and of course aesthetic. Our racquets are made with anywhere from 3K to 18K carbon fiber, the same used by professional paddle players and utilized in aerospace and race car parts. ALL of our racquets are reinforced with carbon fiber tubing for added durability."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Call to Action Button Text",
+      "default": "Find your racquet"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Call to Action URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Custom Collection Image",
+          "info": "Optional: Override the collection's default image"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title",
+          "info": "Optional: Override the collection's default title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Custom Description",
+          "info": "Optional: Override the collection's default description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collections",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
+
+ {% endcomment %}

@@ -1,66 +1,19 @@
-{{ 'hero-banner.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'hero-banner.css' | asset_url | stylesheet_tag }}
+ {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css"> {% endcomment %}
+ 
 
 <section class="hero-banner" style="--hero-bg: {{ section.settings.bg_color }}; --hero-text: {{ section.settings.text_color }}; --hero-cta-bg: {{ section.settings.cta_bg }}; --hero-cta-text: {{ section.settings.cta_text }}; --hero-cta-bg-hover: {{ section.settings.cta_bg_hover }};">
-  {% comment %} <div class="hero-banner__content">
-    {% if section.settings.title != blank %}
-      <h1 class="hero-banner__title">{{ section.settings.title }}</h1>
-    {% else %}
-      <h1 class="hero-banner__title">Let Your Aura Flow Freely</h1>
-    {% endif %}
-    {% if section.settings.subtitle != blank %}
-      <p class="hero-banner__subtitle">{{ section.settings.subtitle }}</p>
-    {% else %}
-      <p class="hero-banner__subtitle">Designed for movement, made with intention. GoldTree Fashion brings harmony between comfort and confidence, so you don't just wear style — you live it.</p>
-    {% endif %}
-    {% if section.settings.cta_label != blank and section.settings.cta_link != blank %}
-      <a href="{{ section.settings.cta_link }}" class="hero-banner__cta">{{ section.settings.cta_label }}</a>
-    {% else %}
-      <a href="/collections/all" class="hero-banner__cta">Shop Collection</a>
-    {% endif %}
-  </div> {% endcomment %}
-  
-  {% comment %} <div class="hero-banner__media-container"> {% endcomment %}
-    {% comment %} <img class="hero-banner__fallback-img" src="{{ 'bamboo.jpg' | asset_url }}" alt="AuraWear fallback image" loading="lazy" /> {% endcomment %}
+
     <img class="hero-banner__fallback-img" 
      src="{{ 'bamboo.jpg' | asset_url }}" 
      alt="AuraWear fallback image" 
      width="100vw" 
      height="1080" 
      loading="lazy" />
-    {% comment %} {% if section.settings.video != blank %}
-      <video class="hero-banner__media" preload="metadata" poster="{{ section.settings.image | image_url: width: 1200 }}">
-        <source src="{{ section.settings.video }}" type="video/mp4">
-      </video>
-    {% elsif section.settings.image != blank %}
-      <img class="hero-banner__media" src="{{ section.settings.image | image_url: width: 1600 }}" alt="" loading="lazy" />
-    {% else %}
-      <video class="hero-banner__media" preload="metadata">
-        <source src="{{ 'hero.mp4' | asset_url }}" type="video/mp4">
-      </video>
-    {% endif %} {% endcomment %}
-  {% comment %} </div> {% endcomment %}
-
 </section>
 
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const heroBanner = document.querySelector('.hero-banner');
-  const video = heroBanner?.querySelector('.hero-banner__media');
-  const fallbackImg = heroBanner?.querySelector('.hero-banner__fallback-img');
-  if (video && video.tagName === 'VIDEO') {
-    video.pause();
-    video.currentTime = 0;
-    heroBanner.addEventListener('mouseenter', () => {
-      heroBanner.classList.add('hero-banner--playing');
-      video.play();
-    });
-    heroBanner.addEventListener('mouseleave', () => {
-      heroBanner.classList.remove('hero-banner--playing');
-      video.pause();
-      video.currentTime = 0;
-    });
-  }
-});
 </script>
 
 
@@ -141,4 +94,232 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   ]
 }
-{% endschema %}
+{% endschema %} {% endcomment %}
+
+
+{{ 'hero-banner.css' | asset_url | stylesheet_tag }}
+{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css"> {% endcomment %}
+
+<section class="hero-banner" style="--hero-bg: {{ section.settings.bg_color }}; --hero-text: {{ section.settings.text_color }}; --hero-cta-bg: {{ section.settings.cta_bg }}; --hero-cta-text: {{ section.settings.cta_text }}; --hero-cta-bg-hover: {{ section.settings.cta_bg_hover }};">
+  {% comment %} <div class="hero-banner__content"> {% endcomment %}
+    {% comment %} {% if section.settings.video != blank %}
+      <video 
+        class="hero-banner__video"
+        src="{{ section.settings.video }}"
+        autoplay
+        muted
+        loop
+        playsinline
+        width="100%"
+        height="1080">
+      </video>
+    {% elsif section.settings.image != blank %}
+      <img class="hero-banner__image"
+           src="{{ section.settings.image | image_url: width: 1920 }}"
+           alt="{{ section.settings.image.alt | default: 'Hero banner image' }}"
+           width="1920"
+           height="1080"
+           loading="eager" />
+    {% else %}
+      {% comment %} <img class="hero-banner__fallback-img" {% endcomment %}
+           src="{{ 'bamboo.jpg' | asset_url }}"
+           alt="AuraWear fallback image"
+           width="100vh"
+           height="2000"
+           loading="eager" />
+    {% endif %}
+    
+    <!-- Secondary sliding image -->
+    {% if section.settings.secondary_image != blank %}
+      <img class="hero-banner__secondary-image"
+           src="{{ section.settings.secondary_image | image_url: width: 1920 }}"
+           alt="{{ section.settings.secondary_image.alt | default: 'Secondary hero image' }}"
+           width="1920"
+           height="1080"
+           loading="eager" />
+    {% else %}
+      <img class="hero-banner__secondary-image"
+           src="{{ 'bamboo-one.jpg' | asset_url }}"
+           alt="Bamboo secondary image"
+           width="1920"
+           height="1080"
+           loading="eager" />
+    {% endif %} {% endcomment %}
+
+
+     <img class="hero-banner__secondary-image"
+           src="{{ 'bamboo-one.jpg' | asset_url }}"
+           alt="Bamboo secondary image"
+           width="100vh"
+           height="100vh"
+           loading="eager" />
+    {% comment %} {% endif %} {% endcomment %}
+   
+  {% comment %} </div> {% endcomment %}
+</section>
+
+<style>
+.hero-banner__secondary-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  will-change: transform;
+}
+
+.hero-banner__overlay {
+  z-index: 3;
+}
+
+.hero-banner__image,
+.hero-banner__video,
+.hero-banner__fallback-img {
+  z-index: 2;
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // GSAP Timeline for hero banner animations
+  const tl = gsap.timeline();
+  
+  // Set initial states
+ 
+  gsap.set('.hero-banner__secondary-image', {
+    x: '100%',
+    opacity: 1,
+    scale: 1
+  });
+  
+ 
+  
+ 
+  
+  
+  
+  // Animation sequence
+
+  // Register ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
+  
+  // Vertical parallax effect on main image/video
+
+  
+  // Horizontal sliding animation for secondary image
+  const secondaryImage = document.querySelector('.hero-banner__secondary-image');
+  if (secondaryImage) {
+    gsap.fromTo('.hero-banner__secondary-image', 
+      {
+        x: '100%'
+      },
+      {
+        x: '-100%',
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-banner",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5,
+          invalidateOnRefresh: true
+        }
+      }
+    );
+  }
+  
+  // Text elements fade and slide based on scroll
+ 
+  
+  // Button hover animations
+ 
+});
+</script>
+
+{% comment %} {% schema %}
+{
+  "name": "Hero banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_image",
+      "label": "Secondary sliding image",
+      "info": "This image will slide horizontally when scrolling"
+    },
+    {
+      "type": "url",
+      "id": "video",
+      "label": "Background video (mp4 URL)",
+      "info": "Overrides image if set."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Bamboo Product"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Designed for movement, made with intention. GoldTree Fashion brings harmony between comfort and confidence, so you don't just wear style — you live it."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Shop Collection"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg",
+      "label": "Button background",
+      "default": "#CDAA7D"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_hover",
+      "label": "Button background (hover)",
+      "default": "#DB2955"
+    },
+    {
+      "type": "color",
+      "id": "cta_text",
+      "label": "Button text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner"
+    }
+  ]
+}
+{% endschema %} {% endcomment %}

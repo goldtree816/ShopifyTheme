@@ -1,13 +1,6 @@
 
 
 
-
-
-
-
-
-
-
  <!-- sections/featured-collections.liquid -->
 <section class="featured-collections">
   <link rel="stylesheet" href="{{ 'featured-collections.css' | asset_url }}">
@@ -15,7 +8,7 @@
   <div class="featured-collections__container">
     <!-- Hero Section with Image and Text -->
     <div class="featured-collections__hero">
-      <div id="hero-image-one" class="featured-collections__hero-image">
+      {% comment %} <div id="hero-image-one" class="featured-collections__hero-image">
         {% if section.settings.hero_image %}
           <img src="{{ section.settings.hero_image | img_url: '800x600' }}" 
                alt="{{ section.settings.heading | escape }}" 
@@ -23,9 +16,9 @@
                loading="lazy" />
         {% endif %}
         <div class="hero-overlay"></div>
-      </div>
+      </div> {% endcomment %}
 
-       <div id="hero-image-two" class="featured-collections__hero-image">
+       {% comment %} <div id="hero-image-two" class="featured-collections__hero-image">
         {% if section.settings.hero_image %}
           <img src="{{ section.settings.hero_image_two | img_url: '800x600' }}" 
                alt="{{ section.settings.heading | escape }}" 
@@ -33,7 +26,7 @@
                loading="lazy" />
         {% endif %}
         <div class="hero-overlay"></div>
-      </div>
+      </div> {% endcomment %}
 
       <div class="slider-container">
     <div class="slider" id="slider">
@@ -47,15 +40,30 @@
         {% endif %}
      
       </div>
-      <div class="slide slide2">Slide 2</div>
-      <div class="slide slide3">Slide 3</div>
+      <div class="slide slide2">
+        {% if section.settings.hero_image %}
+          <img src="{{ section.settings.hero_image_two | img_url: '800x600' }}" 
+               alt="{{ section.settings.heading | escape }}" 
+               class="hero-image" 
+               loading="lazy" />
+        {% endif %}
+      </div>
+      <div class="slide slide3">
+        {% if section.settings.hero_image %}
+          <img src="{{ section.settings.hero_image_three| img_url: '800x600' }}" 
+               alt="{{ section.settings.heading | escape }}" 
+               class="hero-image" 
+               loading="lazy" />
+        {% endif %}
+      </div>
     </div>
-  </div>
-
-  <div class="buttons">
+     <div class="buttons">
     <button onclick="prevSlide()">⬅️ Prev</button>
     <button onclick="nextSlide()">Next ➡️</button>
   </div>
+  </div>
+
+  
 
 
        {% comment %} <div id="hero-image-three" class="featured-collections__hero-image">
@@ -67,7 +75,6 @@
         {% endif %}
         <div class="hero-overlay"></div>
       </div> {% endcomment %}
-      
       
       <div class="featured-collections__hero-content">
         <h2 class="featured-collections__title">{{ section.settings.heading | default: 'We are carbon fiber obsessed' }}</h2>
@@ -86,7 +93,7 @@
     </div>
 
    
-
+ 
 
 
     
@@ -109,7 +116,7 @@
       } else {
         currentIndex = index;
       }
-      slider.style.transform = `translateX(-${currentIndex * 300}px)`;
+      slider.style.transform = `translateX(-${currentIndex * 600}px)`;
     }
 
     function nextSlide() {
@@ -366,7 +373,7 @@
 
 
  .slider-container {
-      width: 300px;
+      width: 600px;
       overflow: hidden;
       margin: auto;
       border: 2px solid #333;
@@ -379,8 +386,8 @@
     }
 
     .slide {
-      min-width: 300px;
-      height: 200px;
+      min-width: 600px;
+      height: 600px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -396,7 +403,8 @@
     .buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 10px;
+      {% comment %} margin-top: 10px; {% endcomment %}
+      margin-bottom :80px
     }
 
     button {

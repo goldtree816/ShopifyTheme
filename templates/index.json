@@ -8,10 +8,17 @@
       "type": "hero-banner",
       "settings": {}
     },
-    "featured-collections": {
+
+    " featured-collections": {
       "type": "featured-collections",
       "settings": {}
     },
+
+    "product-collections": {
+      "type": "product-collections",
+      "settings": {}
+    },
+
     "offer": {
       "type": "offer",
       "settings": {}
@@ -25,7 +32,8 @@
     "header",
     "hero-banner",
     "featured-collections",
+    "product-collections",
     "offer",
     "footer"
   ]
-} 
+}

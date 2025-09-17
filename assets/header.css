@@ -392,19 +392,15 @@
   pointer-events: auto !important;
 }
 
-/* Prevent GSAP from affecting header elements */
+/* Header elements styling */
 .shopify-section-header * {
-  opacity: 1 !important;
-  transform: none !important;
   pointer-events: auto !important;
 }
 
-/* Ensure dropdowns are always visible and not affected by GSAP */
+/* Ensure dropdowns are always visible */
 .header__dropdown,
 .header__dropdown--submenu,
 .header__nav-item--dropdown {
-  opacity: 1 !important;
-  transform: none !important;
   pointer-events: auto !important;
   visibility: visible !important;
 }

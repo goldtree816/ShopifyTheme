@@ -8,6 +8,20 @@
       "type": "hero-banner",
       "settings": {}
     },
+    "featured-footwear": {
+      "type": "featured-footwear",
+      "settings": {
+        "heading": "Featured Footwear",
+        "subheading": "<p>Discover our latest collection of premium footwear with multiple color options</p>",
+        "collection": "",
+        "products_to_show": 2,
+        "button_text": "View All Footwear",
+        "button_url": "/collections/footwear",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "browse-tshirt": {
       "type": "browse-tshirt",
       "settings": {}
@@ -20,7 +34,48 @@
       "type": "offer",
       "settings": {}
     },
-    
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Join Our Newsletter",
+        "description": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
+        "button_label": "Subscribe",
+        "show_background": true
+      }
+    },
+    "testimonials": {
+      "type": "testimonials-parallax",
+      "settings": {
+        "title": "What Our Customers Say",
+        "subtitle": "Hear from our satisfied customers about their experience with GoldTree Fashion"
+      },
+      "blocks": {
+        "testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>I absolutely love my new outfit from GoldTree Fashion! The quality is exceptional and the fit is perfect. I've received so many compliments!</p>",
+            "author_name": "Sarah Johnson",
+            "author_title": "Loyal Customer"
+          }
+        },
+        "testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>The customer service at GoldTree Fashion is outstanding. They went above and beyond to help me find the perfect size. Highly recommend!</p>",
+            "author_name": "Michael Chen",
+            "author_title": "Fashion Enthusiast"
+          }
+        },
+        "testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Fast shipping, beautiful packaging, and the products are even better in person than online. GoldTree Fashion has become my go-to for stylish essentials.</p>",
+            "author_name": "Emma Rodriguez",
+            "author_title": "Style Blogger"
+          }
+        }
+      }
+    },
     "footer": {
       "type": "footer",
       "settings": {}
@@ -32,6 +87,9 @@
     "browse-tshirt",
     "featured-collections",
     "offer",
+    "featured-footwear",
+    "newsletter",
+    "testimonials",
     "footer"
   ]
-} 
+}

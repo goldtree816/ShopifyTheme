@@ -1,0 +1,586 @@
+/* Featured Footwear Section Styles */
+.featured-footwear-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-footwear-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23CDAA7D" opacity="0.03"/><circle cx="75" cy="75" r="1" fill="%23CDAA7D" opacity="0.03"/><circle cx="50" cy="10" r="0.5" fill="%23CDAA7D" opacity="0.02"/><circle cx="10" cy="60" r="0.5" fill="%23CDAA7D" opacity="0.02"/><circle cx="90" cy="40" r="0.5" fill="%23CDAA7D" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* Footwear Grid */
+.footwear-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* Footwear Card */
+.footwear-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.footwear-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #CDAA7D, #b89a6b, #CDAA7D);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 200% 0; }
+  50% { background-position: -200% 0; }
+}
+
+.footwear-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Image Container */
+.footwear-image-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.footwear-image-link {
+  display: block;
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footwear-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #f8f9fa;
+}
+
+.footwear-card:hover .footwear-main-image {
+  transform: scale(1.05);
+}
+
+/* Color Swatches */
+.color-swatches {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+  align-items: center;
+}
+
+.footwear-card:hover .color-swatches {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.color-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(45deg, var(--swatch-color, #ccc), var(--swatch-color, #ccc));
+}
+
+.color-swatch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--swatch-color, #ccc);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.color-swatch.active {
+  border-color: #CDAA7D;
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(205, 170, 125, 0.4);
+}
+
+.color-swatch.active::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.color-name {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: #666;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  z-index: 10;
+}
+
+.color-swatch:hover .color-name {
+  opacity: 1;
+}
+
+/* Footwear Info */
+.footwear-info {
+  text-align: center;
+}
+
+.footwear-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1D1D1F;
+  line-height: 1.3;
+}
+
+.footwear-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footwear-title a:hover {
+  color: #CDAA7D;
+}
+
+/* Price */
+.footwear-price {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.price-regular,
+.price-sale {
+  color: #CDAA7D;
+}
+
+.price-compare {
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Add to Cart Button */
+.footwear-form {
+  margin: 0;
+}
+
+.footwear-add-to-cart {
+  width: 100%;
+  background: linear-gradient(135deg, #CDAA7D 0%, #b89a6b 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footwear-add-to-cart::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.footwear-add-to-cart:hover::before {
+  left: 100%;
+}
+
+.footwear-add-to-cart:hover {
+  background: linear-gradient(135deg, #b89a6b 0%, #a0885a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(205, 170, 125, 0.3);
+}
+
+.footwear-add-to-cart:active {
+  transform: translateY(0);
+}
+
+.footwear-add-to-cart:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Section Footer */
+.section-footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.section-button {
+  display: inline-block;
+  background: transparent;
+  color: #CDAA7D;
+  border: 2px solid #CDAA7D;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #CDAA7D;
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.section-button:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(205, 170, 125, 0.3);
+}
+
+.section-button:hover::before {
+  left: 0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .featured-footwear-section {
+    padding: 2rem 0;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .footwear-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .footwear-card {
+    padding: 1.5rem;
+  }
+  
+  .footwear-image-link {
+    height: 250px;
+  }
+  
+  .color-swatches {
+    position: static;
+    opacity: 1;
+    transform: none;
+    margin-top: 1rem;
+    background: rgba(248, 249, 250, 0.8);
+    display: flex;
+  }
+  
+  .color-swatch {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .footwear-title {
+    font-size: 1.2rem;
+  }
+  
+  .footwear-price {
+    font-size: 1.1rem;
+  }
+  
+  .footwear-add-to-cart {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .footwear-card {
+    padding: 1rem;
+  }
+  
+  .footwear-image-link {
+    height: 200px;
+  }
+  
+  .color-swatch {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .color-swatches {
+    padding: 0.5rem;
+    gap: 0.25rem;
+  }
+}
+
+/* Loading Animation */
+.footwear-main-image {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Color Swatch Loading */
+.color-swatch {
+  opacity: 0;
+  animation: fadeInScale 0.4s ease forwards;
+  animation-delay: calc(var(--index, 0) * 0.1s);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Button animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Accessibility */
+.color-swatch:focus {
+  outline: 2px solid #CDAA7D;
+  outline-offset: 2px;
+}
+
+.footwear-add-to-cart:focus {
+  outline: 2px solid #CDAA7D;
+  outline-offset: 2px;
+}
+
+/* Empty State */
+.footwear-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 1rem;
+  border: 2px dashed #CDAA7D;
+}
+
+.footwear-empty-state p {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.footwear-empty-state p:first-child {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #CDAA7D;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .footwear-card {
+    border: 2px solid #000;
+  }
+  
+  .color-swatch {
+    border: 2px solid #000;
+  }
+  
+  .footwear-add-to-cart {
+    border: 2px solid #000;
+  }
+}
+
+/* Image-backed swatches */
+.image-swatch {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Improve contrast mask for image swatches */
+.image-swatch::before {
+  background: radial-gradient(closest-side, rgba(0,0,0,0.0), rgba(0,0,0,0.15));
+}
+
+/* Minimal card style for catalog look */
+.card-minimal {
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 0;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+.card-minimal .footwear-image-container { box-shadow: none; background: #fff; border-radius: 0.75rem 0.75rem 0 0; }
+.card-minimal .footwear-image-link { height: 320px; }
+.card-minimal .footwear-info { padding: 1rem 1rem 1.25rem; text-align: left; }
+.card-minimal .footwear-title { font-size: 1rem; font-weight: 700; color: #1D1D1F; margin: 0.25rem 0 0.25rem; }
+.card-minimal .footwear-price { margin: 0.25rem 0 0.5rem; font-size: .95rem; }
+.card-minimal .price-compare { font-size: .85rem; }
+.card-minimal .footwear-add-to-cart { margin-top: .75rem; }
+
+/* Inline small color dots under price */
+.color-swatches-inline { position: static; background: transparent; box-shadow: none; padding: 0; gap: .5rem; justify-content: flex-start; }
+.color-swatches-inline .color-swatch { width: 16px; height: 16px; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.15); }
+.color-swatches-inline .color-swatch.active { box-shadow: 0 0 0 2px #CDAA7D; transform: none; }
+.color-swatches-inline .color-name { display: none; }
+
+@media screen and (max-width: 768px) {
+  .card-minimal .footwear-image-link { height: 260px; }
+}
+
+@media screen and (max-width: 480px) {
+  .card-minimal .footwear-image-link { height: 220px; }
+}

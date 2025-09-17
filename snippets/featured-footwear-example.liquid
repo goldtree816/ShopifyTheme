@@ -1,0 +1,129 @@
+{% comment %}
+  Example usage of the Featured Footwear section
+  This snippet shows how to integrate the section into your theme
+{% endcomment %}
+
+{% comment %}
+  Include the CSS and JavaScript files in your theme.liquid or template
+  Add these to your theme.liquid file in the <head> section:
+  
+  {{ 'featured-footwear.css' | asset_url | stylesheet_tag }}
+  
+  And before the closing </body> tag:
+  
+  {{ 'featured-footwear.js' | asset_url | script_tag }}
+{% endcomment %}
+
+{% comment %}
+  Example: Add this section to any template using:
+  {% section 'featured-footwear' %}
+  
+  Or add it to your index.liquid, collection.liquid, or product.liquid templates
+{% endcomment %}
+
+<!-- Example of how the section will render -->
+<div class="featured-footwear-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Featured Footwear</h2>
+      <p class="section-subtitle">Discover our latest collection of premium footwear with multiple color options</p>
+    </div>
+
+    <div class="footwear-grid">
+      <!-- Product 1 -->
+      <div class="footwear-card">
+        <div class="footwear-image-container">
+          <a href="/products/airflex-sneakers" class="footwear-image-link">
+            <img 
+              class="footwear-main-image" 
+              src="/products/airflex-sneakers/white.jpg" 
+              alt="AirFlex Sneakers"
+              loading="lazy"
+            >
+          </a>
+          
+          <div class="color-swatches">
+            <button class="color-swatch active" data-variant-id="123456789" data-image-url="/products/airflex-sneakers/white.jpg" data-product-id="123456789">
+              <span class="color-name">White</span>
+            </button>
+            <button class="color-swatch" data-variant-id="123456790" data-image-url="/products/airflex-sneakers/black.jpg" data-product-id="123456789">
+              <span class="color-name">Black</span>
+            </button>
+            <button class="color-swatch" data-variant-id="123456791" data-image-url="/products/airflex-sneakers/navy.jpg" data-product-id="123456789">
+              <span class="color-name">Navy</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="footwear-info">
+          <h3 class="footwear-title">
+            <a href="/products/airflex-sneakers">AirFlex Sneakers</a>
+          </h3>
+          
+          <div class="footwear-price">
+            <span class="price-regular">$89.99</span>
+          </div>
+
+          <form action="/cart/add" method="post" enctype="multipart/form-data" class="footwear-form">
+            <input type="hidden" name="id" value="123456789">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="footwear-add-to-cart">
+              Add to Cart
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="footwear-card">
+        <div class="footwear-image-container">
+          <a href="/products/comfort-boots" class="footwear-image-link">
+            <img 
+              class="footwear-main-image" 
+              src="/products/comfort-boots/brown.jpg" 
+              alt="Comfort Boots"
+              loading="lazy"
+            >
+          </a>
+          
+          <div class="color-swatches">
+            <button class="color-swatch active" data-variant-id="987654321" data-image-url="/products/comfort-boots/brown.jpg" data-product-id="987654321">
+              <span class="color-name">Brown</span>
+            </button>
+            <button class="color-swatch" data-variant-id="987654322" data-image-url="/products/comfort-boots/black.jpg" data-product-id="987654321">
+              <span class="color-name">Black</span>
+            </button>
+            <button class="color-swatch" data-variant-id="987654323" data-image-url="/products/comfort-boots/tan.jpg" data-product-id="987654321">
+              <span class="color-name">Tan</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="footwear-info">
+          <h3 class="footwear-title">
+            <a href="/products/comfort-boots">Comfort Boots</a>
+          </h3>
+          
+          <div class="footwear-price">
+            <span class="price-sale">$129.99</span>
+            <span class="price-compare">$159.99</span>
+          </div>
+
+          <form action="/cart/add" method="post" enctype="multipart/form-data" class="footwear-form">
+            <input type="hidden" name="id" value="987654321">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="footwear-add-to-cart">
+              Add to Cart
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-footer">
+      <a href="/collections/footwear" class="section-button">
+        View All Footwear
+      </a>
+    </div>
+  </div>
+</div>

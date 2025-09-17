@@ -1,0 +1,187 @@
+{% comment %}
+  Testimonials Section with Parallax Effect
+{% endcomment %}
+
+<link rel="stylesheet" href="{{ 'testimonials-parallax.css' | asset_url }}">
+
+<section class="testimonials-parallax" data-parallax="scroll" data-image-src="{{ section.settings.background_image | image_url: width: 2000 }}">
+  <div class="testimonials-overlay"></div>
+  <div class="testimonials-container">
+    <h2 class="testimonials-title">{{ section.settings.title | escape }}</h2>
+    
+    {% if section.settings.subtitle != blank %}
+      <p class="testimonials-subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+    
+    <div class="testimonials-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'testimonial' %}
+          <div class="testimonial-item" {{ block.shopify_attributes }}>
+            <div class="testimonial-content">
+              <div class="testimonial-quote">
+                <i class="fa fa-quote-left"></i>
+                {{ block.settings.quote }}
+                <i class="fa fa-quote-right"></i>
+              </div>
+              
+              <div class="testimonial-author">
+                {% if block.settings.author_image != blank %}
+                  <img src="{{ block.settings.author_image | image_url: width: 100 }}" alt="{{ block.settings.author_name }}" class="testimonial-author-image">
+                {% else %}
+                  <div class="testimonial-author-placeholder">{{ block.settings.author_name | slice: 0 | upcase }}</div>
+                {% endif %}
+                
+                <div class="testimonial-author-info">
+                  <p class="testimonial-author-name">{{ block.settings.author_name }}</p>
+                  {% if block.settings.author_title != blank %}
+                    <p class="testimonial-author-title">{{ block.settings.author_title }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      
+      {% if section.blocks.size == 0 %}
+        <div class="testimonial-item">
+          <div class="testimonial-content">
+            <div class="testimonial-quote">
+              <i class="fa fa-quote-left"></i>
+              I absolutely love my new outfit from GoldTree Fashion! The quality is exceptional and the fit is perfect. I've received so many compliments!
+              <i class="fa fa-quote-right"></i>
+            </div>
+            
+            <div class="testimonial-author">
+              <div class="testimonial-author-placeholder">S</div>
+              <div class="testimonial-author-info">
+                <p class="testimonial-author-name">Sarah Johnson</p>
+                <p class="testimonial-author-title">Loyal Customer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-item">
+          <div class="testimonial-content">
+            <div class="testimonial-quote">
+              <i class="fa fa-quote-left"></i>
+              The customer service at GoldTree Fashion is outstanding. They went above and beyond to help me find the perfect size. Highly recommend!
+              <i class="fa fa-quote-right"></i>
+            </div>
+            
+            <div class="testimonial-author">
+              <div class="testimonial-author-placeholder">M</div>
+              <div class="testimonial-author-info">
+                <p class="testimonial-author-name">Michael Chen</p>
+                <p class="testimonial-author-title">Fashion Enthusiast</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-item">
+          <div class="testimonial-content">
+            <div class="testimonial-quote">
+              <i class="fa fa-quote-left"></i>
+              Fast shipping, beautiful packaging, and the clothes are even better in person than online. GoldTree Fashion has become my go-to for stylish essentials.
+              <i class="fa fa-quote-right"></i>
+            </div>
+            
+            <div class="testimonial-author">
+              <div class="testimonial-author-placeholder">E</div>
+              <div class="testimonial-author-info">
+                <p class="testimonial-author-name">Emma Rodriguez</p>
+                <p class="testimonial-author-title">Style Blogger</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.5.0/parallax.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize parallax effect
+    var parallaxElements = document.querySelectorAll('.testimonials-parallax');
+    if (parallaxElements.length > 0) {
+      new Parallax(parallaxElements[0]);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials Parallax",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "What Our Customers Say",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "Read testimonials from our satisfied customers",
+      "label": "Subtitle"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Testimonial",
+          "default": "<p>Share a review from a happy customer.</p>"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "author_title",
+          "label": "Author Title",
+          "default": "Happy Customer"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Parallax",
+      "category": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
